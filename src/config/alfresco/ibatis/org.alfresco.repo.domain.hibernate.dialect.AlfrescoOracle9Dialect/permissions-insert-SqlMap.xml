@@ -9,13 +9,7 @@
 		select alf_access_control_list_seq.NEXTVAL as value from dual          
         </selectKey>
         
-         insert into alf_access_control_list
-            (id, version, acl_id, latest, acl_version, inherits, inherits_from,
-             type, inherited_acl, is_versioned, requires_version, acl_change_set)
-        values
-            (#{id,jdbcType=BIGINT}, #{version,jdbcType=BIGINT}, #{aclId,jdbcType=VARCHAR}, #{latest,jdbcType=BIT}, #{aclVersion,jdbcType=BIGINT}, #{inherits,jdbcType=BIT}, #{inheritsFrom,jdbcType=BIGINT},
-             #{type,jdbcType=INTEGER}, #{inheritedAcl,jdbcType=BIGINT}, #{isVersioned,jdbcType=BIT}, #{requiresVersion,jdbcType=BIT}, #{aclChangeSet,jdbcType=BIGINT})
-
+        <include refid="alfresco.permissions.insert_Acl_Sequence"/>
         
     </insert>
     
@@ -41,10 +35,11 @@
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_access_control_entry_seq.NEXTVAL as value from dual         
         </selectKey>        
-		insert into alf_access_control_entry
-            (id, version, permission_id, authority_id, allowed, applies, context_id)
-        values
-            (#{id,jdbcType=BIGINT}, #{version,jdbcType=BIGINT}, #{permissionId,jdbcType=BIGINT}, #{authorityId,jdbcType=BIGINT}, #{allowed,jdbcType=BIT}, #{applies,jdbcType=INTEGER}, #{contextId,jdbcType=BIGINT})        
+		<include refid="alfresco.permissions.insert_Ace_Sequence"/>
+
+
+
+
     </insert>
     
     <insert id="insert_AceContext" parameterType="AceContext">

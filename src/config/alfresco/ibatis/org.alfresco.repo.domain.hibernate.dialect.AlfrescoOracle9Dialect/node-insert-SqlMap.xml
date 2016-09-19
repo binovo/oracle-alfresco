@@ -24,6 +24,7 @@
     <insert id="insert_Node" parameterType="Node" >
     	<selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_node_seq.NEXTVAL as value from dual          
+
         </selectKey>
         
         <include refid="alfresco.node.insert_Node_Sequence"/>        
@@ -50,6 +51,7 @@
 		select alf_child_assoc_seq.NEXTVAL as value from dual           
         </selectKey>
 		
+
         <include refid="alfresco.node.insert_ChildAssoc_Sequence"/>
         
     </insert>

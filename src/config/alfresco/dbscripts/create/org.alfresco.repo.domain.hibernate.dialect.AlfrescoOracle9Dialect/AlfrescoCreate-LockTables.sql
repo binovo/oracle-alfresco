@@ -42,4 +42,5 @@ alter table alf_lock
 CREATE INDEX fk_alf_lock_excl ON alf_lock (excl_resource_id);
 CREATE UNIQUE INDEX idx_alf_lock_key ON alf_lock (shared_resource_id, excl_resource_id);
 
+
 CREATE SEQUENCE alf_lock_seq START WITH 1 INCREMENT BY 1 ORDER;

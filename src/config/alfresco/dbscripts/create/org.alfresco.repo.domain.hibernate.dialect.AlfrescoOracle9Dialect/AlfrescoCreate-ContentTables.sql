@@ -67,3 +67,10 @@ CREATE INDEX fk_alf_cont_mim ON alf_content_data (content_mimetype_id);
 CREATE INDEX fk_alf_cont_enc ON alf_content_data (content_encoding_id);
 CREATE INDEX fk_alf_cont_loc ON alf_content_data (content_locale_id);
 CREATE SEQUENCE alf_content_data_seq START WITH 1 INCREMENT BY 1 ORDER;
+
+--CREATE TABLE alf_content_clean
+--(
+--   content_url VARCHAR2(255) NOT NULL  
+--);
+--create index idx_alf_contentclean_url on alf_content_clean(content_url);
+--CREATE SEQUENCE alf_content_clean_seq START WITH 1 INCREMENT BY 1 ORDER;

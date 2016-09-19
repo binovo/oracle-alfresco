@@ -10,19 +10,26 @@
 			select alf_audit_model_seq.NEXTVAL as value from dual          
         </selectKey>
         
-        insert into alf_audit_model (id, content_data_id, content_crc) 
-        values (#{id}, #{contentDataId}, #{contentCrc})
+        <include refid="alfresco.audit.insert_AuditModel_Sequence"/>
+
         
     </insert>
+
 
     <insert id="insert_AuditApplication" parameterType="AuditApplication" >        
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >           
 			select alf_audit_app_seq.NEXTVAL as value from dual
         </selectKey>        
-        insert into alf_audit_app (id, version, app_name_id, audit_model_id, disabled_paths_id) 
-        values (#{id}, #{version}, #{applicationNameId}, #{auditModelId}, #{disabledPathsId})
+        <include refid="alfresco.audit.insert_AuditApplication_Sequence"/>
         
+
+
+
+
+
+
     </insert>
+
 
     <insert id="insert_AuditEntry" parameterType="AuditEntry" >
         
@@ -30,9 +37,9 @@
 			select alf_audit_entry_seq.NEXTVAL as value from dual            
         </selectKey>
         
-        insert into alf_audit_entry (id, audit_app_id, audit_user_id, audit_time, audit_values_id) 
-        values (#{id}, #{auditApplicationId}, #{auditUserId}, #{auditTime}, #{auditValuesId})
+        <include refid="alfresco.audit.insert_AuditEntry_Sequence"/>
         
     </insert>
+
 
 </mapper>

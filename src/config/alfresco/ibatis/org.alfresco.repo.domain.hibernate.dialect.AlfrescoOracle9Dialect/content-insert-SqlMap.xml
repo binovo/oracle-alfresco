@@ -2,6 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
+
 <mapper namespace="alfresco.content.insert">
    
    <insert id="insert_Mimetype" parameterType="Mimetype" >
@@ -10,8 +11,8 @@
 			select alf_mimetype_seq.NEXTVAL as value from dual
         </selectKey>
         
-        insert into alf_mimetype (id, version, mimetype_str)
-        values (#{id}, #{version}, lower(#{mimetype,jdbcType=VARCHAR}))
+        <include refid="alfresco.content.insert_Mimetype_Sequence"/>
+
         
     </insert>
     
@@ -32,6 +33,7 @@
         </selectKey>
         
        <include refid="alfresco.content.insert_ContentUrl_Sequence"/>        
+
     </insert>
     
     <insert id="insert_ContentData" parameterType="ContentData" >
@@ -39,6 +41,7 @@
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_content_data_seq.NEXTVAL as value from dual           
         </selectKey>
+
         <include refid="alfresco.content.insert_ContentData_Sequence"/>
         
     </insert>

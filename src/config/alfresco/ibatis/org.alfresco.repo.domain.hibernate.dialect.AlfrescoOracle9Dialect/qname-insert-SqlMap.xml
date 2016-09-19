@@ -6,6 +6,7 @@
 
     <insert id="insert_Namespace" parameterType="Namespace" >
     	<selectKey resultType="long" keyProperty="id" order="BEFORE" >            
+
 			select alf_namespace_seq.NEXTVAL as value from dual
         </selectKey>
     
@@ -15,6 +16,7 @@
     <insert id="insert_QName" parameterType="QName" >
     	<selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_qname_seq.NEXTVAL as value from dual         
+
         </selectKey>
         
         <include refid="alfresco.qname.insert_QName_AutoIncrement_Sequence"/>

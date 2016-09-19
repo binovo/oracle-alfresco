@@ -6,12 +6,13 @@
 
     <insert id="insert_PropertyClass" parameterType="PropertyClass" >
         
+
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_prop_class_seq.NEXTVAL as value from dual           
         </selectKey>
         
-        insert into alf_prop_class (id, java_class_name, java_class_name_short, java_class_name_crc) 
-        values (#{id}, #{javaClassName}, #{javaClassNameShort}, #{javaClassNameCrc})
+        <include refid="alfresco.propval.insert_PropertyClass_Sequence"/>
+
     </insert>
 
     <insert id="insert_PropertyStringValue" parameterType="PropertyStringValue" >
@@ -20,9 +21,9 @@
 		select alf_prop_string_value_seq.NEXTVAL as value from dual            
         </selectKey>
         
-        insert into alf_prop_string_value (id, string_value, string_end_lower, string_crc) 
-        values (#{id}, #{stringValue}, #{stringEndLower}, #{stringCrc})
+        <include refid="alfresco.propval.insert_PropertyStringValue_Sequence"/>
         
+
     </insert>
 
     <insert id="insert_PropertyDoubleValue" parameterType="PropertyDoubleValue" >
@@ -30,10 +31,8 @@
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_prop_double_value_seq.NEXTVAL as value from dual            
         </selectKey>
-        
-        insert into alf_prop_double_value (id, double_value) 
-        values (#{id}, #{doubleValue})
-        
+        <include refid="alfresco.propval.insert_PropertyDoubleValue_Sequence"/>
+
     </insert>
 
     <insert id="insert_PropertySerializableValue" parameterMap="alfresco.propval.parameter_IdPropertySerializableValue" >
@@ -42,9 +41,8 @@
 		select alf_prop_ser_value_seq.NEXTVAL as value from dual            
         </selectKey>
         
-        insert into alf_prop_serializable_value (id, serializable_value) 
-        values (?, ?)
-        
+        <include refid="alfresco.propval.insert_PropertySerializableValue_Sequence"/>
+
     </insert>
 
     <insert id="insert_PropertyValue" parameterType="PropertyValue" >
@@ -53,9 +51,9 @@
 		select alf_prop_value_seq.NEXTVAL as value from dual            
         </selectKey>
         
-        insert into alf_prop_value (id, actual_type_id, persisted_type, long_value) 
-        values (#{id}, #{actualTypeId}, #{persistedType}, #{longValue})
+        <include refid="alfresco.propval.insert_PropertyValue_Sequence"/>
         
+
     </insert>
 
     <insert id="insert_PropertyRoot" parameterMap="alfresco.propval.parameter_IdPropertyRoot" >
